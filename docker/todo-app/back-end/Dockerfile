@@ -1,14 +1,15 @@
 FROM node:14-alpine
 
-WORKDIR /app
+WORKDIR /back-end
 
-EXPOSE 3001
-
-ADD node_modules.tar.gz ./
-COPY package.json ./
-COPY package-lock.json ./
-COPY src ./src
+COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
+
+ADD node_modules.tar.gz .
+COPY src ./src
+
+EXPOSE 3001
 
 ENTRYPOINT ["npm", "start"]

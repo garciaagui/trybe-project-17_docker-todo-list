@@ -1,13 +1,14 @@
 FROM mjgargani/puppeteer:trybe1.0
 
-WORKDIR /app
+WORKDIR /tests
 
-ADD node_modules.tar.gz ./
-COPY package.json ./
-COPY package-lock.json ./
-COPY jest.config.js ./
-COPY e2e ./e2e
+COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
+
+ADD node_modules.tar.gz .
+COPY jest.config.js .
+COPY e2e ./e2e
 
 ENTRYPOINT ["npm", "test"]
